@@ -44,6 +44,8 @@ class ExistsFilter extends AbstractFilter
         $properties = $this->properties;
         if (null === $properties) {
             $properties = array_fill_keys($this->getClassMetadata($resourceClass)->getFieldNames(), null);
+            $associations = array_fill_keys($this->getClassMetadata($resourceClass)->getAssociationNames(), null);
+            $properties = array_merge($properties,$associations);
         }
 
         foreach ($properties as $property => $unused) {
